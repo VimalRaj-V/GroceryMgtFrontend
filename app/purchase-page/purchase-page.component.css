@@ -1,0 +1,19 @@
+.container {
+    height: 400px;
+    overflow: auto;
+  }
+
+
+.control{
+    display: flexbox;
+    margin: 10px 50px;
+    bottom: 5vh;
+    position: fixed;
+    
+}
+
+.control button{
+    display: flexbox;
+    margin: 10px 50px;
+    
+}

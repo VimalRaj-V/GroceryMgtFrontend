@@ -1,0 +1,51 @@
+ul {
+    margin-top: 5450px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: aliceblue;
+}
+
+li {
+    display: grid;
+    margin: 30px;
+}
+
+.example-card {
+    width: 150px;
+    height: 250px;
+    align-items: center;
+    text-align: center;
+    background-color:cornflowerblue;
+}
+
+.example-card:hover {
+    transform: scale(1.05);
+}
+
+mat-card-actions button {
+    width: 25px;
+
+}
+
+mat-card-actions input {
+    width: 25px;
+    text-align: center;
+}
+
+.control-left {
+    position: fixed;
+    z-index: 20;
+    top: 1vh;
+    left: 10vh;
+}
+
+.control-right {
+    position: fixed;
+    z-index: 20;
+    top: 1vh;
+    right: 10vh;
+}
+
+mat-card-actions .add-to-cart-btn {
+    width: 100px;
+}

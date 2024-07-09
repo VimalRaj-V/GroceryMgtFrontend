@@ -1,0 +1,40 @@
+.mid {
+    z-index: 1;
+    background-color: aliceblue;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50px;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: mediumslateblue;
+    color: azure;
+    height: 50px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 10;
+    box-shadow: inset;
+}
+
+.foot {
+    height: 40px;
+    position: fixed;
+    bottom: 0px;
+    background-color: mediumslateblue;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: azure;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}

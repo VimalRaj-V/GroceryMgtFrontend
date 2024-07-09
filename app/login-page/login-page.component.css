@@ -1,0 +1,23 @@
+.example-card {
+    max-width: 300px;
+    align-items: center;
+}
+
+.example-card mat-card-content{
+    margin: 10px;
+    display: inline-block;
+}
+
+.example-card mat-card-content input{
+    margin: 10px;
+    padding: 10px 20px;
+}
+.example-card mat-card-content a{
+    text-decoration: none;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.example-card mat-card-actions button{
+    margin: 10px;
+}

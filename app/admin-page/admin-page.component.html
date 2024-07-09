@@ -1,0 +1,149 @@
+<div class="container">
+    <h2>Grocery Operations</h2>
+    
+    <div class="example-button-row">
+      <button mat-raised-button color="primary" (click)="currentOperation = 'add'">Add Grocery</button>
+      <button mat-raised-button color="primary" (click)="currentOperation = 'update'">Update Grocery</button>
+      <button mat-raised-button color="primary" (click)="currentOperation = 'delete'">Delete Grocery</button>
+      <button mat-raised-button color="primary" (click)="currentOperation = 'productPerformance'" (click)="groceryPerformance()">Product Performance</button>
+      <button mat-raised-button color="primary" (click)="currentOperation = 'customerPerformance'" (click)="viewCustomers()">Customer Performance</button>
+      
+    </div>
+
+    <div class="control-left"><button mat-raised-button color="primary" (click)="signOut()">Sign Out</button></div>
+    
+    <div *ngIf="currentOperation == 'add'">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Add Grocery</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                Enter the item name:
+                <input type="text" placeholder="Item Name" [(ngModel)]="groceryDto.itemName">
+                Enter the brand
+                <input type="text" placeholder="Brand Name" [(ngModel)]="groceryDto.itemBrand">
+                Enter the Price
+                <input type="number" placeholder="Price" [(ngModel)]="groceryDto.itemPrice">
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button  color="primary" (click)="addGrocery()">Add Grocery</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div *ngIf="currentOperation == 'update'">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Update Grocery</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                Enter the item Id:
+                <input type="text" placeholder="Item Id" [(ngModel)]="itemId">
+
+                Enter the item name:
+                <input type="text" placeholder="Item Name" [(ngModel)]="groceryDto.itemName">
+                Enter the brand
+                <input type="text" placeholder="Brand Name" [(ngModel)]="groceryDto.itemBrand">
+                Enter the Price
+                <input type="number" placeholder="Price" [(ngModel)]="groceryDto.itemPrice">
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button  color="primary" (click)="modifyGrocery()">Modify Grocery</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div *ngIf="currentOperation == 'delete'">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Update Grocery</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                Enter the item Id:
+                <input type="text" placeholder="Item Id" [(ngModel)]="itemId">
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button  color="primary" (click)="deleteGrocery()">Delete Grocery</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div class="container-table">
+        <div *ngIf="currentOperation == 'productPerformance'">
+            <table mat-table [dataSource]="sortedData"  matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+    
+                <ng-container matColumnDef="itemId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="itemId"> Item Id </th>
+                    <td mat-cell *matCellDef="let product"> {{product.itemId}} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="itemName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="itemName"> Item Name </th>
+                    <td mat-cell *matCellDef="let product"> {{product.itemName}} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="itemPrice">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="itemPrice"> Price </th>
+                    <td mat-cell *matCellDef="let product">Rs. {{product.itemPrice}} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="itemBrand">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="itemBrand"> Brand </th>
+                    <td mat-cell *matCellDef="let product"> {{product.itemBrand}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="quantitySold" >
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="quantitySold"> Total Quantity Sold </th>
+                    <td mat-cell *matCellDef="let product"> {{product.quantitySold}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="revenueGenerated" >
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="revenueGenerated"> Total Revenue Generated </th>
+                    <td mat-cell *matCellDef="let product"> Rs. {{product.revenueGenerated}} </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+    
+    
+        <div *ngIf="currentOperation == 'customerPerformance'">
+            <table mat-table [dataSource]="customerPurchaseDto" class="mat-elevation-z8">
+    
+                <ng-container matColumnDef="customerName">
+                    <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+                    <td mat-cell *matCellDef="let customer"> {{customer.customerName}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="customerUserName">
+                    <th mat-header-cell *matHeaderCellDef> Customer UserName </th>
+                    <td mat-cell *matCellDef="let customer">{{customer.customerUserName}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="purchasesMade">
+                    <th mat-header-cell *matHeaderCellDef> No of Purchases Made </th>
+                    <td mat-cell *matCellDef="let customer"> {{customer.purchasesMade}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="totalPurchasedAmount" >
+                    <th mat-header-cell *matHeaderCellDef> Total Purchased Amount </th>
+                    <td mat-cell *matCellDef="let customer"> {{customer.totalPurchasedAmount}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="avgPurchasedAmount">
+                    <th mat-header-cell *matHeaderCellDef> Average Purchased Amount </th>
+                    <td mat-cell *matCellDef="let customer"> Rs. {{customer.avgPurchasedAmount}} </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsCustomer; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsCustomer;"></tr>
+            </table>
+        </div>
+
+    
+</div>
+            

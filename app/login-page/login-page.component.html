@@ -1,0 +1,14 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <input type="text" placeholder="User Name" [(ngModel)]="user.customerUserName">
+        <input type="password" placeholder="Password" [(ngModel)]="user.customerPassword">
+        <a  routerLink="/forgetPassword">Forgot Password</a>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button  color="primary" (click)="goShopping()">Login</button>
+        <button mat-raised-button  color="primary" (click)="register()">Sign Up</button>
+    </mat-card-actions>
+</mat-card>

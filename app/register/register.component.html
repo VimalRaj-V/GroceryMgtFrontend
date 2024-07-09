@@ -1,0 +1,22 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        Enter a your full name:
+        <input type="text" placeholder="Name" [(ngModel)]="user.customerName" required>
+        Enter a unique user name:
+        <input type="text" placeholder="User Name" [(ngModel)]="user.customerUserName" required>
+        Enter your password
+        <input type="password" placeholder="Password" [(ngModel)]="user.customerPassword" required>
+        Enter your mail Id
+        <input type="email" #email="ngModel" placeholder="Mail Id" [(ngModel)]="user.customerMailId" required email>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+            <div *ngIf="email.errors?.['required']">Email is required</div>
+            <div *ngIf="email.errors?.['email']">Invalid email address</div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="addUser()" validate>Create</button>
+    </mat-card-actions>
+</mat-card>

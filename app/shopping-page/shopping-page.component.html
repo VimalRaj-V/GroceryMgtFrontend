@@ -1,0 +1,28 @@
+<ul>
+  <li *ngFor='let groceryItem of groceryItemsDto'>
+    <mat-card class="example-card" style="background-color:lightsteelblue;">
+      <mat-card-header>
+        <mat-card-title>{{groceryItem.itemName}} </mat-card-title>
+        <mat-card-subtitle>{{groceryItem.itemBrand}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src={{imgAdd1+groceryItem.itemName+imgAdd2}} alt={{groceryItem.itemName}} height="100px"
+        width="100px">
+      <mat-card-actions>
+        <div *ngIf="groceryItem.quantity==0">
+          <button class="add-to-cart-btn" (click)="increaseQuantity(groceryItem)">Add to Cart</button>
+        </div>
+        <div *ngIf="groceryItem.quantity>0">
+          <button class="minus-btn" (click)="decreaseQuantity(groceryItem)">-</button>
+          <input type="text" class="quantity-input" id="desserts-quantity" value={{groceryItem.quantity}}>
+          <button class="plus-btn" (click)="increaseQuantity(groceryItem)">+</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </li>
+  <li>
+    <div class="control-left"><button mat-raised-button color="primary" (click)="signOut()">Sign Out</button></div>
+  </li>
+  <li>
+    <div class="control-right"><button mat-raised-button color="primary" (click)="addToCart()">View Cart</button></div>
+  </li>
+</ul>
